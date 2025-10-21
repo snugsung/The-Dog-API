@@ -1,10 +1,167 @@
-body {
-    font-family: system-ui, Arial, sans-serif;
-    margin: 0;
-    padding: 24px;
-    line-height: 1.5;
+/* Basic layout */
+:root {
+  --bg: #0f0f12;
+  --card: #17171c;
+  --muted: #9fb3c8;
+  --text: #e7edf3;
+  --brand: #7cc7ff;
+  --brand-2: #4fb6ff;
+  --border: #23232a;
 }
 
-h1 { 
-    margin: 0 0 8px; 
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding: 16px;
+}
+
+.site-header h1 {
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.site-nav {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.site-nav button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--brand);
+  font-weight: 700;
+  cursor: pointer;
+}
+.site-nav button:hover {
+  color: var(--brand-2);
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Panels */
+.panel {
+  display: none;
+}
+.panel.active {
+  display: block;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* Image areas */
+.image-wrap {
+  width: 100%;
+  max-width: 560px; /* cap width so it doesn’t dominate */
+  margin: 12px auto; /* center */
+  background: #111216;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-height: 200px; /* small floor so layout doesn't jump */
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+/* Make images fit within the box without stretching or cropping */
+.image-wrap img {
+  max-width: 100%;
+  max-height: clamp(220px, 40vh, 420px); /* responsive height cap */
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain; /* keep aspect ratio, no distortion */
+}
+
+/* Meta info */
+.meta {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+  color: var(--muted);
+}
+.meta strong {
+  color: var(--text);
+}
+
+/* Actions */
+.actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+.actions button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #13141a;
+  color: var(--brand);
+  font-weight: 700;
+  cursor: pointer;
+}
+.actions button:hover {
+  color: var(--brand-2);
+}
+
+/* Form bits */
+label {
+  display: block;
+  margin-bottom: 6px;
+}
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0f1116;
+  color: var(--text);
+}
+
+/* Status line */
+.status {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 12px;
+  min-height: 1.25em;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .site-nav {
+    flex-wrap: wrap;
+  }
+
+  .image-wrap {
+    max-width: 360px;
+  }
+  .image-wrap img {
+    max-height: clamp(180px, 35vh, 320px);
+  }
 }
